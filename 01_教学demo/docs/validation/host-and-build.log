@@ -1,0 +1,245 @@
+software hover cycle passed; simulated max height 0.506 m
+remote, motor guard, PID, safety gates and virtual mixer passed
+ToF/flow register transport fault tests and observation math passed (fake devices, no hardware)
+Processing demo01_vofa (platform: ststm32; board: genericSTM32F103RC; framework: stm32cube)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+WARNING: no /dev/ttyUSB* present; upload will fail
+CONFIGURATION: https://docs.platformio.org/page/boards/ststm32/genericSTM32F103RC.html
+PLATFORM: ST STM32 (19.6.0) > STM32F103RC (48k RAM. 256k Flash)
+HARDWARE: STM32F103RCT6 72MHz, 48KB RAM, 256KB Flash
+DEBUG: Current (blackmagic) External (blackmagic, cmsis-dap, jlink, stlink)
+PACKAGES: 
+ - framework-stm32cubef1 @ 1.8.6 
+ - tool-ldscripts-ststm32 @ 0.2.0 
+ - toolchain-gccarmnoneeabi @ 1.70201.0 (7.2.1)
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ off
+Found 28 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Checking size .pio/build/demo01_vofa/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [          ]   1.2% (used 572 bytes from 49152 bytes)
+Flash: [=         ]   8.9% (used 23428 bytes from 262144 bytes)
+========================= [SUCCESS] Took 0.47 seconds =========================
+
+Processing demo02_remote (platform: ststm32; board: genericSTM32F103RC; framework: stm32cube)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+WARNING: no /dev/ttyUSB* present; upload will fail
+CONFIGURATION: https://docs.platformio.org/page/boards/ststm32/genericSTM32F103RC.html
+PLATFORM: ST STM32 (19.6.0) > STM32F103RC (48k RAM. 256k Flash)
+HARDWARE: STM32F103RCT6 72MHz, 48KB RAM, 256KB Flash
+DEBUG: Current (blackmagic) External (blackmagic, cmsis-dap, jlink, stlink)
+PACKAGES: 
+ - framework-stm32cubef1 @ 1.8.6 
+ - tool-ldscripts-ststm32 @ 0.2.0 
+ - toolchain-gccarmnoneeabi @ 1.70201.0 (7.2.1)
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ off
+Found 28 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Checking size .pio/build/demo02_remote/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [          ]   0.9% (used 444 bytes from 49152 bytes)
+Flash: [          ]   3.6% (used 9336 bytes from 262144 bytes)
+========================= [SUCCESS] Took 0.48 seconds =========================
+
+Processing demo03_motor (platform: ststm32; board: genericSTM32F103RC; framework: stm32cube)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+WARNING: no /dev/ttyUSB* present; upload will fail
+CONFIGURATION: https://docs.platformio.org/page/boards/ststm32/genericSTM32F103RC.html
+PLATFORM: ST STM32 (19.6.0) > STM32F103RC (48k RAM. 256k Flash)
+HARDWARE: STM32F103RCT6 72MHz, 48KB RAM, 256KB Flash
+DEBUG: Current (blackmagic) External (blackmagic, cmsis-dap, jlink, stlink)
+PACKAGES: 
+ - framework-stm32cubef1 @ 1.8.6 
+ - tool-ldscripts-ststm32 @ 0.2.0 
+ - toolchain-gccarmnoneeabi @ 1.70201.0 (7.2.1)
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ off
+Found 28 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Checking size .pio/build/demo03_motor/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [          ]   0.5% (used 260 bytes from 49152 bytes)
+Flash: [          ]   2.6% (used 6748 bytes from 262144 bytes)
+========================= [SUCCESS] Took 0.46 seconds =========================
+
+Processing demo03_motor_bench (platform: ststm32; board: genericSTM32F103RC; framework: stm32cube)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+WARNING: no /dev/ttyUSB* present; upload will fail
+CONFIGURATION: https://docs.platformio.org/page/boards/ststm32/genericSTM32F103RC.html
+PLATFORM: ST STM32 (19.6.0) > STM32F103RC (48k RAM. 256k Flash)
+HARDWARE: STM32F103RCT6 72MHz, 48KB RAM, 256KB Flash
+DEBUG: Current (blackmagic) External (blackmagic, cmsis-dap, jlink, stlink)
+PACKAGES: 
+ - framework-stm32cubef1 @ 1.8.6 
+ - tool-ldscripts-ststm32 @ 0.2.0 
+ - toolchain-gccarmnoneeabi @ 1.70201.0 (7.2.1)
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ off
+Found 28 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Checking size .pio/build/demo03_motor_bench/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [          ]   1.0% (used 476 bytes from 49152 bytes)
+Flash: [          ]   3.6% (used 9308 bytes from 262144 bytes)
+========================= [SUCCESS] Took 0.47 seconds =========================
+
+Processing demo04_hover_logic (platform: ststm32; board: genericSTM32F103RC; framework: stm32cube)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+WARNING: no /dev/ttyUSB* present; upload will fail
+CONFIGURATION: https://docs.platformio.org/page/boards/ststm32/genericSTM32F103RC.html
+PLATFORM: ST STM32 (19.6.0) > STM32F103RC (48k RAM. 256k Flash)
+HARDWARE: STM32F103RCT6 72MHz, 48KB RAM, 256KB Flash
+DEBUG: Current (blackmagic) External (blackmagic, cmsis-dap, jlink, stlink)
+PACKAGES: 
+ - framework-stm32cubef1 @ 1.8.6 
+ - tool-ldscripts-ststm32 @ 0.2.0 
+ - toolchain-gccarmnoneeabi @ 1.70201.0 (7.2.1)
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ off
+Found 28 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Compiling .pio/build/demo04_hover_logic/src/flight/hover.o
+Linking .pio/build/demo04_hover_logic/firmware.elf
+Checking size .pio/build/demo04_hover_logic/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [          ]   0.7% (used 364 bytes from 49152 bytes)
+Flash: [=         ]   6.9% (used 18024 bytes from 262144 bytes)
+Building .pio/build/demo04_hover_logic/firmware.bin
+========================= [SUCCESS] Took 0.56 seconds =========================
+
+Processing demo05_tof (platform: ststm32; board: genericSTM32F103RC; framework: stm32cube)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+WARNING: no /dev/ttyUSB* present; upload will fail
+CONFIGURATION: https://docs.platformio.org/page/boards/ststm32/genericSTM32F103RC.html
+PLATFORM: ST STM32 (19.6.0) > STM32F103RC (48k RAM. 256k Flash)
+HARDWARE: STM32F103RCT6 72MHz, 48KB RAM, 256KB Flash
+DEBUG: Current (blackmagic) External (blackmagic, cmsis-dap, jlink, stlink)
+PACKAGES: 
+ - framework-stm32cubef1 @ 1.8.6 
+ - tool-ldscripts-ststm32 @ 0.2.0 
+ - toolchain-gccarmnoneeabi @ 1.70201.0 (7.2.1)
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ off
+Found 28 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Compiling .pio/build/demo05_tof/src/sensors/tof.o
+Linking .pio/build/demo05_tof/firmware.elf
+Checking size .pio/build/demo05_tof/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [          ]   1.0% (used 516 bytes from 49152 bytes)
+Flash: [=         ]   7.1% (used 18732 bytes from 262144 bytes)
+Building .pio/build/demo05_tof/firmware.bin
+========================= [SUCCESS] Took 0.54 seconds =========================
+
+Processing demo06_flow (platform: ststm32; board: genericSTM32F103RC; framework: stm32cube)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+WARNING: no /dev/ttyUSB* present; upload will fail
+CONFIGURATION: https://docs.platformio.org/page/boards/ststm32/genericSTM32F103RC.html
+PLATFORM: ST STM32 (19.6.0) > STM32F103RC (48k RAM. 256k Flash)
+HARDWARE: STM32F103RCT6 72MHz, 48KB RAM, 256KB Flash
+DEBUG: Current (blackmagic) External (blackmagic, cmsis-dap, jlink, stlink)
+PACKAGES: 
+ - framework-stm32cubef1 @ 1.8.6 
+ - tool-ldscripts-ststm32 @ 0.2.0 
+ - toolchain-gccarmnoneeabi @ 1.70201.0 (7.2.1)
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ off
+Found 28 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Compiling .pio/build/demo06_flow/src/sensors/tof.o
+Linking .pio/build/demo06_flow/firmware.elf
+Checking size .pio/build/demo06_flow/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [          ]   1.0% (used 516 bytes from 49152 bytes)
+Flash: [=         ]   5.4% (used 14084 bytes from 262144 bytes)
+Building .pio/build/demo06_flow/firmware.bin
+========================= [SUCCESS] Took 0.54 seconds =========================
+
+Processing demo07_integration (platform: ststm32; board: genericSTM32F103RC; framework: stm32cube)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+WARNING: no /dev/ttyUSB* present; upload will fail
+CONFIGURATION: https://docs.platformio.org/page/boards/ststm32/genericSTM32F103RC.html
+PLATFORM: ST STM32 (19.6.0) > STM32F103RC (48k RAM. 256k Flash)
+HARDWARE: STM32F103RCT6 72MHz, 48KB RAM, 256KB Flash
+DEBUG: Current (blackmagic) External (blackmagic, cmsis-dap, jlink, stlink)
+PACKAGES: 
+ - framework-stm32cubef1 @ 1.8.6 
+ - tool-ldscripts-ststm32 @ 0.2.0 
+ - toolchain-gccarmnoneeabi @ 1.70201.0 (7.2.1)
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ off
+Found 28 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Compiling .pio/build/demo07_integration/src/flight/hover.o
+Compiling .pio/build/demo07_integration/src/sensors/tof.o
+Linking .pio/build/demo07_integration/firmware.elf
+Checking size .pio/build/demo07_integration/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [          ]   1.3% (used 620 bytes from 49152 bytes)
+Flash: [=         ]  11.8% (used 30848 bytes from 262144 bytes)
+Building .pio/build/demo07_integration/firmware.bin
+========================= [SUCCESS] Took 0.56 seconds =========================
+
+Processing demo02_remote_framed (platform: ststm32; board: genericSTM32F103RC; framework: stm32cube)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+WARNING: no /dev/ttyUSB* present; upload will fail
+CONFIGURATION: https://docs.platformio.org/page/boards/ststm32/genericSTM32F103RC.html
+PLATFORM: ST STM32 (19.6.0) > STM32F103RC (48k RAM. 256k Flash)
+HARDWARE: STM32F103RCT6 72MHz, 48KB RAM, 256KB Flash
+DEBUG: Current (blackmagic) External (blackmagic, cmsis-dap, jlink, stlink)
+PACKAGES: 
+ - framework-stm32cubef1 @ 1.8.6 
+ - tool-ldscripts-ststm32 @ 0.2.0 
+ - toolchain-gccarmnoneeabi @ 1.70201.0 (7.2.1)
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ off
+Found 28 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Checking size .pio/build/demo02_remote_framed/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [          ]   0.9% (used 444 bytes from 49152 bytes)
+Flash: [          ]   3.6% (used 9368 bytes from 262144 bytes)
+========================= [SUCCESS] Took 0.48 seconds =========================
+
+Environment           Status    Duration
+--------------------  --------  ------------
+demo01_vofa           SUCCESS   00:00:00.468
+demo02_remote         SUCCESS   00:00:00.484
+demo03_motor          SUCCESS   00:00:00.457
+demo03_motor_bench    SUCCESS   00:00:00.474
+demo04_hover_logic    SUCCESS   00:00:00.558
+demo05_tof            SUCCESS   00:00:00.542
+demo06_flow           SUCCESS   00:00:00.545
+demo07_integration    SUCCESS   00:00:00.562
+demo02_remote_framed  SUCCESS   00:00:00.476
+========================= 9 succeeded in 00:00:04.564 =========================
+teaching links, 6 zero CSV templates/channel order, and TLE100 Intel HEX passed (578 program bytes)

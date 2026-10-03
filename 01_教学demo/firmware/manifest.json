@@ -1,0 +1,56 @@
+[
+  {
+    "environment": "demo01_vofa",
+    "file": "demo01_vofa.bin",
+    "bytes": 23924,
+    "sha256": "b67c0543a541244042f0f0bc8654696120e5b54d52e6beb13cc997b8b4e4bcaf"
+  },
+  {
+    "environment": "demo02_remote",
+    "file": "demo02_remote.bin",
+    "bytes": 9828,
+    "sha256": "074d452d0e8b1150d4c4b7f3364166765d1d5f0266807dbf6d9ee2becba6489b"
+  },
+  {
+    "environment": "demo02_remote_framed",
+    "file": "demo02_remote_framed.bin",
+    "bytes": 9860,
+    "sha256": "69aa948716e12e96ff569cf5df4989c2286ee1456779e6fdacc37b648ef27f31"
+  },
+  {
+    "environment": "demo03_motor",
+    "file": "demo03_motor.bin",
+    "bytes": 7240,
+    "sha256": "19d3457f62e9e099293ec3ff8ffcb48c59f1bc03efc5ac35ecac7da6c013b6e0"
+  },
+  {
+    "environment": "demo03_motor_bench",
+    "file": "demo03_motor_bench.bin",
+    "bytes": 9800,
+    "sha256": "bd891fd4f63d9adc865ba495f3ba7e645fcd04145e0e491288ca910b5b01d2f6"
+  },
+  {
+    "environment": "demo04_hover_logic",
+    "file": "demo04_hover_logic.bin",
+    "bytes": 18516,
+    "sha256": "451fa133e85867c0f54e668c8260fc5f6e8ff8c7de9aa43c82ef41bfccfda909"
+  },
+  {
+    "environment": "demo05_tof",
+    "file": "demo05_tof.bin",
+    "bytes": 19224,
+    "sha256": "e724fa8c52a3fde460ac3238be27cd1d43b1ba898fd0d68c79ce10b1085bdd75"
+  },
+  {
+    "environment": "demo06_flow",
+    "file": "demo06_flow.bin",
+    "bytes": 14576,
+    "sha256": "9a489b40f08f2a9d88498d32287feb361909f477d608c56b541ff3e4470a6fd7"
+  },
+  {
+    "environment": "demo07_integration",
+    "file": "demo07_integration.bin",
+    "bytes": 31340,
+    "sha256": "c875cdc998ae48cd6c21e6aaef333a7f6e3ab39476eca58ad5b86de58ab2595e"
+  }
+]

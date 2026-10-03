@@ -1,0 +1,30 @@
+competition task bridge passed: priorities, freshness, calibration, wrap, controller gates (host only)
+Competition CSV: 32 columns, all initial values zero
+Competition Markdown: 24 local links exist
+Processing contest_hover (platform: ststm32; board: genericSTM32F103RC; framework: stm32cube)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+WARNING: no /dev/ttyUSB* present; upload will fail
+CONFIGURATION: https://docs.platformio.org/page/boards/ststm32/genericSTM32F103RC.html
+PLATFORM: ST STM32 (19.6.0) > STM32F103RC (48k RAM. 256k Flash)
+HARDWARE: STM32F103RCT6 72MHz, 48KB RAM, 256KB Flash
+DEBUG: Current (blackmagic) External (blackmagic, cmsis-dap, jlink, stlink)
+PACKAGES: 
+ - framework-stm32cubef1 @ 1.8.6 
+ - tool-ldscripts-ststm32 @ 0.2.0 
+ - toolchain-gccarmnoneeabi @ 1.70201.0 (7.2.1)
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ off
+Found 28 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Compiling .pio/build/contest_hover/src/hal/Src/common.o
+Compiling .pio/build/contest_hover/src/main.o
+Linking .pio/build/contest_hover/firmware.elf
+Checking size .pio/build/contest_hover/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [          ]   3.9% (used 1904 bytes from 49152 bytes)
+Flash: [=         ]  12.3% (used 32168 bytes from 262144 bytes)
+Building .pio/build/contest_hover/firmware.bin
+========================= [SUCCESS] Took 0.62 seconds =========================
