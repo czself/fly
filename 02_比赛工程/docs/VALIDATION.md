@@ -11,3 +11,7 @@
 主机测试只使用限定数学输入，没有模拟设备替代真实无线验收。飞控链接产物不含电机 PWM 启动/占空比应用调用；实际输出启用通道恒 0。未装的新模块、未到的遥控器烧录器、安装坐标和光流补偿、电机旋向映射/供电、PID 与故障降落均标记待验收，不以编译成功代替真机证据。
 
 最终完整命令输出见 [build_validation.log](build_validation.log)；固件校验见 [firmware_sha256.json](firmware_sha256.json)。
+
+## 2026-10-07 回归
+
+重新运行`bash scripts/check_contest.sh`：主机任务桥接测试、32列全零CSV、Markdown链接检查及`contest_hover`固件构建全部通过。验收脚本新增两项持续门禁：最终ELF不得包含`Board_MotorPwm`/`HAL_TIM_PWM_Start`，构建出的BIN必须与仓库中的`firmware/contest_hover.bin`逐字节一致，并通过`docs/firmware_sha256.json`校验。完整输出见 [2026-10-07回归日志](build_validation_2026-10-07.log)。当前结果仍只是代码/构建验证，没有烧录或实机传感器、无线、飞行验证。

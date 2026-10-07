@@ -17,3 +17,21 @@ print('Competition CSV: 32 columns, all initial values zero')
 PY
 python3 scripts/check_docs.py
 pio run -e contest_hover
+if arm-none-eabi-nm .pio/build/contest_hover/firmware.elf | \
+   grep -Eq 'Board_MotorPwm|HAL_TIM_PWM_Start'; then
+    echo 'contest_hover unexpectedly links physical motor PWM code' >&2
+    exit 1
+fi
+cmp .pio/build/contest_hover/firmware.bin firmware/contest_hover.bin
+python3 - <<'PY'
+import hashlib
+import json
+from pathlib import Path
+
+root = Path('.')
+manifest = json.loads((root / 'docs/firmware_sha256.json').read_text())
+for relative, expected in manifest.items():
+    actual = hashlib.sha256((root / relative).read_bytes()).hexdigest()
+    assert actual == expected, f'{relative}: SHA256 mismatch'
+print('Competition firmware isolation, build snapshot and manifest passed')
+PY
