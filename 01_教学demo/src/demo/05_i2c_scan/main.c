@@ -22,14 +22,14 @@ typedef struct {
 } BoardDevice;
 
 /*
- * 前四个挂在 I2C2（PB10/PB11）上；US22310S 如果装了超声波模块也在这条总线，
+ * 板载传感器挂在 I2C2（PB10/PB11）上；US22310S 如果装了超声波模块也在这条总线，
  * 地址 7 位是 0x39（官方旧例程里的 0x70 是 US22309S，不能照抄）。
+ * ST24C02 的 A0/A1/A2 焊盘决定地址，按 0x50~0x57 全范围检查。
  */
 static const BoardDevice i2c2_devices[] = {
     {BOARD_I2C_ADDR_MPU6050,    "MPU6050 (attitude)"},
     {BOARD_I2C_ADDR_QMC5883L,  "QMC5883L (magnetometer)"},
     {BOARD_I2C_ADDR_SPL06,     "SPL06-001 (barometer)"},
-    {BOARD_I2C_ADDR_EEPROM24C02, "ST24C02 (EEPROM 2K)"},
     {BOARD_I2C_ADDR_US22310S,  "US22310S (ultrasonic)"},
 };
 
@@ -83,6 +83,26 @@ static void ReportI2c2Devices(void)
         } else {
             Board_Log("MISSING\r\n");
         }
+    }
+
+    /* EEPROM 地址由 A0/A1/A2 硬件配置决定，只做地址应答检测，不读写内容。 */
+    uint8_t eeprom_found = 0U;
+    for (uint16_t address7 = BOARD_I2C_ADDR_EEPROM24C02_BASE;
+         address7 <= BOARD_I2C_ADDR_EEPROM24C02_TOP;
+         ++address7) {
+        if (HAL_I2C_IsDeviceReady(&hi2c2,
+                                  (uint16_t)(address7 << 1U),
+                                  3U,
+                                  20U) == HAL_OK) {
+            Board_Log("  ST24C02 (EEPROM 2K) @0x");
+            Board_LogHexByte((uint8_t)address7);
+            Board_Log(" : OK\r\n");
+            eeprom_found = 1U;
+            break;
+        }
+    }
+    if (!eeprom_found) {
+        Board_Log("  ST24C02 (EEPROM 2K) @0x50-0x57 : MISSING\r\n");
     }
 }
 

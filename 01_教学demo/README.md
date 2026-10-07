@@ -34,7 +34,7 @@ pio run -e demo01_vofa
 pio run -e demo01_vofa -t upload
 ```
 
-一次烧录替换板上原固件。`demo_vofa`旧名称保持可用；综合板载诊断用`demo_selftest`，其电机段与EEPROM写入行为需先阅读原说明。`platformio.ini`仍保留部分只有配置没有源码的旧环境，本表才是此次完整课程入口。
+一次烧录替换板上原固件。`demo_vofa`旧名称保持可用；板载只读诊断使用`demo_selftest`，默认只探测 EEPROM 地址、不改写内容，也不编译电机 PWM 测试。电机请用`demo03_motor_bench`逐路验证并拆桨。除此七课外，工程还提供模板、LED、I2C扫描、只读综合自检、VOFA与串口探针示例；当前验收脚本会构建全部16个有效环境。
 
 ```bash
 bash scripts/check_demos.sh
@@ -42,13 +42,13 @@ bash scripts/build_remote.sh
 python3 scripts/check_teaching_assets.py
 ```
 
-这些命令只测试和编译，不烧录。9个F22教学构建环境、主机逻辑与传感器替身测试通过，TLE100 HEX也已编译；详见 [验证记录](docs/LESSON_VALIDATION.md)。当前没有可用CH340端口，且新模块/遥控烧录器未到，因此本批代码没有实机下载或无线/测距/光流验证。
+这些命令只测试和编译，不烧录。当前16个F22环境、主机逻辑与传感器替身测试通过，TLE100 HEX也已编译；详见 [验证记录](docs/LESSON_VALIDATION.md)。本次检查未检测到CH340串口，因此只确认固件可构建，没有对当前板子进行下载或实机诊断；无线、测距和光流也尚未完成实测。
 
 项目约定与后续实飞任务见 [上下文](PROJECT_CONTEXT.md)、[架构](ARCHITECTURE.md)、[路线图](ROADMAP.md)。原采集文件在`data/vofa+.csv`，原根目录保留兼容链接，不用全零模板覆盖。
 
 ## 单文件讲义与资料包
 
-[教学总讲义.md](教学总讲义.md) 汇总17份授课/实验/协议/接线文档；`firmware/`保存9个教学环境的BIN快照。向队员发旁边根目录的`教学资料.zip`，解压即可得到本教学工程、CSV、手册与遥控HEX。
+[教学总讲义.md](教学总讲义.md) 汇总17份授课/实验/协议/接线文档；`firmware/`保存16个有效教学环境的BIN快照。向队员发旁边根目录的`教学资料.zip`，解压即可得到本教学工程、CSV、手册与遥控HEX。
 
 重新生成讲义与包：
 

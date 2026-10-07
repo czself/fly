@@ -38,3 +38,9 @@ F22产物位于`.pio/build/<环境>/firmware.bin`；遥控HEX位于`remote/tle10
 ## 目录集中整理
 
 教学工程整体移动到`01_教学demo`，重新运行9环境构建、两组主机测试、CSV/链接检查与遥控器重编译均通过。源码、算法行为和采集CSV内容未因目录调整改变。新增本地手册、总讲义与ZIP包；详细校验见 [整理记录](validation/整理记录.json) 和 [整理后的验证日志](validation/目录整理验证.log)。比赛工程是旁边独立项目，不从教学目录读取源文件。
+
+## 2026-10-07：板载自检安全构建
+
+用户要求重新尝试早期的开发板自检固件。源码仍位于`src/demo/demo_selftest/main.c`，环境为`demo_selftest`。本次将 EEPROM 写入和电机 PWM 测试设为关闭，并从该环境排除电机定时器驱动；构建后的 ELF 用`arm-none-eabi-nm`检查，不含`Board_MotorPwm`或`HAL_TIM_PWM_Start`符号。EEPROM仍做0x50–0x57地址探测，不修改内容。邻近I2C扫描示例也改为同一地址范围扫描，兼容板上A0/A1/A2焊盘配置。
+
+主机逻辑/传感器替身测试和16个有效PlatformIO环境全部通过，教学资源检查通过。完整输出见 [本次构建日志](validation/selftest-safe-build-2026-10-07.log)。系统未发现`/dev/ttyUSB*`、`/dev/ttyACM*`或CH340设备，所以这次没有烧录，也没有读取当前实物板的传感器结果；板上诊断仍待串口重新连接后进行。

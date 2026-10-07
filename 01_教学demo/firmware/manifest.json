@@ -1,5 +1,47 @@
 [
   {
+    "environment": "demo00_template",
+    "file": "demo00_template.bin",
+    "bytes": 5168,
+    "sha256": "87ef3d8b45169b657fa2408f04800787bfdc08d5701097e5b3656d0759cca905"
+  },
+  {
+    "environment": "demo01_gpio_led",
+    "file": "demo01_gpio_led.bin",
+    "bytes": 6612,
+    "sha256": "5421b15bcf7e077918c06582304e997b1daa4d6c6ffc65700564ecb8419c5d77"
+  },
+  {
+    "environment": "demo02_key_led",
+    "file": "demo02_key_led.bin",
+    "bytes": 6000,
+    "sha256": "a07bc5c76725a3e87a6b8b80406ed475d31a55f940819a0e7a4deba5709b5c61"
+  },
+  {
+    "environment": "demo05_i2c_scan",
+    "file": "demo05_i2c_scan.bin",
+    "bytes": 8336,
+    "sha256": "7a3332f98e80948ad224782988afa500238e43d742562c05823d8c5c25312f9d"
+  },
+  {
+    "environment": "demo_selftest",
+    "file": "demo_selftest.bin",
+    "bytes": 25020,
+    "sha256": "e3057725d12e9d1ca9ac583c138d43a3922faed07088656d226a49d17b0d3bc7"
+  },
+  {
+    "environment": "demo_vofa",
+    "file": "demo_vofa.bin",
+    "bytes": 23924,
+    "sha256": "b67c0543a541244042f0f0bc8654696120e5b54d52e6beb13cc997b8b4e4bcaf"
+  },
+  {
+    "environment": "demo_uart_probe",
+    "file": "demo_uart_probe.bin",
+    "bytes": 892,
+    "sha256": "39a6eae5dfa7da5cc9e9fadf41aaa250f122c70ade6135f8cd9b4b4323a4fc1b"
+  },
+  {
     "environment": "demo01_vofa",
     "file": "demo01_vofa.bin",
     "bytes": 23924,

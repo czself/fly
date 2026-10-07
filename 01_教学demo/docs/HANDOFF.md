@@ -2,7 +2,9 @@
 
 > 本文件保留2026-10-02历史自检记录。当前七课工程、硬件状态和更谨慎的故障结论以[总入口](../README.md)及[硬件梳理](HARDWARE_OVERVIEW.md)为准；QMC无ACK证明板级通信异常，未单独确认芯片本体损坏。
 
-> 最后更新：2026-10-02
+> **当前安全模式（2026-10-07）**：`demo_selftest` 只读检查，不写 EEPROM，也不编译/触发电机 PWM。旧记录中 EEPROM 写入和全电机测试仅描述历史版本。单电机测试请使用 `demo03_motor_bench`，先拆桨。
+
+> 历史交接内容最后更新：2026-10-02；当前安全自检构建更新：2026-10-07
 > 代码位置：`/data/Downloads/f22_hal_demos/01_教学demo`
 > 目标平台：UAV-F22 飞控板（STM32F103RCT6），HAL + PlatformIO 工程
 
@@ -14,7 +16,7 @@ Cube 四元数绑定及全部通道定义见 [VOFA.md](VOFA.md)。综合自检�
 ## 1. 一句话说明这个项目
 
 给手上 3 块 UAV-F22 板写**一个固件**，上电跑一遍就把 MCU、供电、按键、LED、
-I2C、EEPROM、两个板载传感器、航向漂移、ADC、DAC 全查完，末尾打印汇总表，
+I2C、EEPROM 地址探测、两个板载传感器、航向漂移、ADC、DAC 全查完，末尾打印汇总表，
 FAIL 项 LED1 常亮。接手的板子只需要串口连上跑一次，不用挨个烧例程。
 
 ---
@@ -34,7 +36,7 @@ pio run -e demo_selftest -t upload
 python3 /tmp/opencode/runcap.py
 ```
 
-编译产物约 28.4 KB / 256 KB。
+当前安全自检构建产物约 24.5 KB / 256 KB。下文设备测试过程和旧的电机/EEPROM写入记录属于历史版本；现在的 `demo_selftest` 不写 EEPROM，也不输出 PWM。
 
 **烧录注意**：CH340 会间歇掉线，内核会重新分配 `ttyUSB` 编号。
 `platformio.ini` 里挂了 `extra_scripts/ch340_port.py`，按 USB VID `1a86` 定位，
@@ -59,7 +61,7 @@ upload_flags = -R -i -rts,-dtr,dtr:rts,-dtr,dtr
 
 ```
 f22_hal_demos/
-├── platformio.ini            # 24 个环境；demo_selftest 是综合自检
+├── platformio.ini            # 16 个有效构建环境；demo_selftest 是只读综合自检
 ├── extra_scripts/
 │   └── ch340_port.py         # 按 VID 1a86 自动定位串口
 ├── docs/
@@ -83,7 +85,7 @@ f22_hal_demos/
         └── demo_selftest/main.c    # ★ 综合自检，1125 行
 ```
 
-`demo_selftest` 是当前唯一在用的例程，其余是骨架/教学例程。
+`demo_selftest` 是板载只读诊断例程之一；教学课入口见项目根目录 README。
 
 ---
 
@@ -97,15 +99,14 @@ f22_hal_demos/
 | 4 | 按键 KEY1/KEY2 | 上拉空闲为高 |
 | 5 | LED1/LED2 | PA0/PA1 可控 |
 | 6 | I2C1 (JP6) | 总线能初始化，0x50 无 ACK 属正常（空板） |
-| 7 | I2C2 (JP7) | 扫板载器件 + EEPROM 写读校验 |
+| 7 | I2C2 (JP7) | 扫板载器件 + EEPROM 地址探测（当前只读） |
 | 8 | IMU MPU6050 | WHO_AM_I=0x68、\|accel\| 0.8~1.2g、gyro 近 0 |
 | 9 | 气压 SPL06-001 | CHIP_ID=0x1x、COEF_RDY/SENSOR_RDY、数据会变 |
 | 10 | 航向漂移 60s | 起止 gyroZ 均值之差换算成 deg/s |
 | 11 | ADC1-8 | 打印 8 通道 raw 与端口电压 |
 | 12 | DAC1/DAC2 | 置码后启通道 |
 
-电机测试不在上电流程里，**由 KEY1 上升沿触发**（上电前拆桨叶）。
-触发前所有通道锁定 0% 不转；触发后 LED1/LED2 变回判决灯常亮，不再当心跳闪。
+当前安全构建跳过 EEPROM 写入，并完全关闭电机 PWM。历史版曾由 KEY1 触发全路电机；这段只作旧记录，不能按旧步骤在当前板上执行。需要检查电机时使用第 3 课单路台架固件并拆桨。
 
 汇总行形如 `total=18  FAIL=1  WARN=0`。
 
@@ -273,9 +274,8 @@ VL53LXX 测距模块应接 **JP7 / I2C2**，不要接 JP6。
 
 2. **TIM3/TIM4 调到 15kHz** — 一行改动，见第 7 节。
 
-3. **EEPROM 破坏性写入**
-   `Test_EepromWriteRead()` 每次都往 page 0 写 `0xA5`，**会覆盖出厂参数**。
-   应改成先备份后恢复，或加显式开关。当前是已知取舍。
+3. **EEPROM 写入**
+   当前安全构建只探测地址，不写 page 0，避免覆盖板上已有数据。旧版历史记录中的 `0xA5` 写入已停用。
 
 4. **`Test_HeadingDrift()` 方法有缺陷**
    它只比较起点和终点的 gyroZ **均值**，不是累计积分 yaw。
@@ -368,7 +368,7 @@ TLE100 可编程遥控装置（TLE100.pdf + 用户手册 + 编程例程 zip）�
 | 手动指定端口 | `pio device list` |
 | 抓输出存文件 | `python3 /tmp/opencode/runcap.py` |
 | 看输出 | `cat /tmp/opencode/sens.txt \| tr -d '\r'` |
-| 电机测试 | 拆桨 → 上电 → 按 KEY1 |
+| 电机测试 | 使用 `demo03_motor_bench`；拆桨后一次只测一路 |
 | 查官方例程 | `grep -ra <keyword> /home/sz/无人机资料/3_官方例程/`（**必须带 `-a`，例程是 GBK 编码**） |
 
 **官方资料路径**：

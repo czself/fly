@@ -9,6 +9,10 @@
 #include "tim.h"
 #include "usart.h"
 
+/* Safe by default: the health check must not alter stored data or spin motors. */
+#define SELFTEST_ENABLE_EEPROM_WRITE 0U
+#define SELFTEST_ENABLE_MOTOR_TEST 0U
+
 /*
  * ============================================================================
  * UAV-F22 综合自检例程（一个固件查全部）
@@ -22,17 +26,15 @@
  * 也分不清是哪一步坏的。这个固件每次上电按固定顺序跑完所有项，
  * 末尾打印一份汇总表，三块板的输出可以直接互相比较。
  *
- * 安全提醒（重要）
- *   电机已经在板上装好了。M1~M7 输出的那一段会真的让桨叶转起来，
- *   所以电机测试被放在最后，而且必须先按住 KEY1 确认才会执行。
- *   在你按下 KEY1 之前，电机 PWM 全部停在 0%。
- *   如果桨叶/联轴器没拆，第一次按下 KEY1 时请把手拿开。
+ * 安全默认
+ *   EEPROM 仅探测地址，不写任何数据；本环境不编译电机测试代码。
+ *   需要测试电机时，使用隔离的 demo03_motor_bench，每次只测一路并拆桨。
  *
  * 判定基准
  *   [OK]      符合预期
  *   [WARN]    有响应但数值可疑，多半是外接接线或供电问题，不是芯片坏
  *   [FAIL]    完全没响应；须排查地址、供电、接线和总线后再判断故障
- *   [SKIP]    没触发对应测试（电机段）或未接外部激励（模拟量段）
+ *   [SKIP]    安全模式跳过 EEPROM 写入/电机输出，或未接外部激励
  */
 
 #define SELFTEST_RESULT_OK 0U
@@ -829,8 +831,9 @@ static void Test_HeadingDrift(void) {
   }
 }
 
-/* EEPROM 写-读-校验，验证 2K 存储真的能掉电保存数据。 */
+/* EEPROM is read-only by default; opt-in writes are reserved for controlled tests. */
 static void Test_EepromWriteRead(void) {
+#if SELFTEST_ENABLE_EEPROM_WRITE
   static uint8_t pattern = 0xA5U;
   uint8_t readback = 0U;
   uint8_t device_address8;
@@ -873,6 +876,10 @@ static void Test_EepromWriteRead(void) {
 
   Board_Log("  readback matched\r\n");
   Record_Result("EEPROM write/read verify", SELFTEST_RESULT_OK);
+#else
+  Board_Log("  read-only safe mode: EEPROM contents were not modified\r\n");
+  Record_Result("EEPROM write/read verify", SELFTEST_RESULT_SKIP);
+#endif
 }
 
 /* ------------------------------------------------------------------------- */
@@ -883,6 +890,7 @@ static void Test_EepromWriteRead(void) {
  * 电机一旦上电就会转，所以这里做成"按 KEY1 才动"。
  * 按之前所有通道都是 0% 占空比。
  */
+#if SELFTEST_ENABLE_MOTOR_TEST
 static void Test_Motors(void) {
   static const char *motor_names[] = {
       "M1 motor (TIM3_CH1/PC6)",     "M2 motor (TIM3_CH2/PC7)",
@@ -954,6 +962,7 @@ static void Test_Motors(void) {
   }
   Board_Log("  all motors stopped\r\n");
 }
+#endif
 
 /* ------------------------------------------------------------------------- */
 /* 汇总 */
@@ -1099,8 +1108,14 @@ int main(void) {
   Print_Title("Analog output (DAC1/DAC2)");
   Test_AnalogOutput();
 
+  /* Physical motor tests use the isolated, single-motor bench environment. */
+#if !SELFTEST_ENABLE_MOTOR_TEST
+  Record_Result("motor PWM outputs (disabled in safe self-test)",
+                SELFTEST_RESULT_SKIP);
+#endif
   Print_Summary();
 
+#if SELFTEST_ENABLE_MOTOR_TEST
   Board_Log("\r\nmotors are held at 0% -- press KEY1 to run motor test\r\n");
   Board_Log("(LED1/LED2 now show the self-test verdict, not a heartbeat)\r\n");
 
@@ -1122,4 +1137,10 @@ int main(void) {
      */
     HAL_Delay(50U);
   }
+#else
+  Board_Log("\r\nmotor PWM is disabled in this self-test build\r\n");
+  while (1) {
+    HAL_Delay(50U);
+  }
+#endif
 }
