@@ -15,3 +15,5 @@
 ## 2026-10-07 回归
 
 重新运行`bash scripts/check_contest.sh`：主机任务桥接测试、32列全零CSV、Markdown链接检查及`contest_hover`固件构建全部通过。验收脚本新增两项持续门禁：最终ELF不得包含`Board_MotorPwm`/`HAL_TIM_PWM_Start`，构建出的BIN必须与仓库中的`firmware/contest_hover.bin`逐字节一致，并通过`docs/firmware_sha256.json`校验。完整输出见 [2026-10-07回归日志](build_validation_2026-10-07.log)。当前结果仍只是代码/构建验证，没有烧录或实机传感器、无线、飞行验证。
+
+使用SDCC 4.5.0重建比赛目录的TLE100发射端；其HEX与教学工程重建结果逐字节一致，且匹配本目录固件SHA256清单。构建记录见 [遥控固件重建日志](remote-build-2026-10-07.log)。
